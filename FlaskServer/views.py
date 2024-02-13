@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, redirect, request, session, jsonify
+    Blueprint, redirect, request, session, jsonify, render_template
 )
 from . import sentParsing
 import os
@@ -9,18 +9,16 @@ bp = Blueprint('graph', __name__, url_prefix='/')
 
 @bp.route('/', methods=('GET', 'POST'))
 def index():
-    # if request.method == 'GET':
-    #     absPath = os.path.abspath(os.getcwd())
-    #     nwPath = absPath.replace("Flask_Files", f"Flutter_Project\\assets\\con.png")
-    #     if os.path.isfile(nwPath):
-    #         os.remove('con.png')
+    if (request.method == 'GET'):
+        return render_template('base.html', type=request.args.get('q'))
+
     if (request.method == 'POST') and request.is_json:
         
-        print("received dart post request")
+        print("received post request")
         response = request.get_json()
         
-        result = sentParsing.treeDeterminer(response['type'], response['body']) #function that determines whether to make dependency or constituent tree
+        result = sentParsing.graphGen(response['body'])
         if result:
-            return result
+            return render_template('base.html')
         else:
             return jsonify("<h1>Error creating dependency tree</h1>")
