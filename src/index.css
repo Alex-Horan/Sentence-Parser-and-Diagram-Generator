@@ -5,3 +5,9 @@ body {
   max-width: 38rem;
   padding: 2rem;
 }
+
+.graph {
+  max-width: 100px;
+  max-height: 100px;
+
+}
