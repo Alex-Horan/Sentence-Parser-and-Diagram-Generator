@@ -21,12 +21,12 @@ export default function Display() {
         function handleRadioChange(e){
             setTreeType(e.target.value);
         }
-
+        
         // actual html form that renders on screen
         return (
             <div>
                 <form className="form" name='sentenceForm' onSubmit={handleFormSubmit}>
-                    <input type="text" name="sentence" id="sentence"></input>
+                    <input type="text" name="sentence" id="sentence" required="true"></input>
                     <label><input type="radio" name="tree" value="con" onChange={handleRadioChange} checked={treeType === "con"}></input>Constituents</label>
                     <label><input type="radio" name="tree" value="dep" onChange={handleRadioChange} checked={treeType === "dep"}></input>Dependencies</label>
                 </form>
