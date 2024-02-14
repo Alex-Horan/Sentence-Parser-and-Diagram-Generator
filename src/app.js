@@ -1,12 +1,9 @@
 import React from "react";
-import Input from "./components/Input.js";
-import { Image } from "./components/Image.js";
+import Display from "./components/Display";
+
 function App() {
     return (
-        <div>
-            <Input />
-            <Image />
-        </div>
+        <Display />
     );
 }
 
