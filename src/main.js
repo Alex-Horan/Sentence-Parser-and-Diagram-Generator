@@ -9,20 +9,22 @@ if (require('electron-squirrel-startup')) {
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1280,
+    height: 800,
     frame: true,
+    show: false,
     autoHideMenuBar: true,
+    resizable: false,
     webPreferences: {
       preload: path.join(__dirname, "./preload.js"),
       contextIsolation: true,
-      webSecurity: false,
+      
     },
   });
 
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
-
+  mainWindow.once('ready-to-show', () => {mainWindow.show()})
   // Open the DevTools.
 };
 
