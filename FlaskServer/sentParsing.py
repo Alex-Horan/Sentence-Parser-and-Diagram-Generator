@@ -16,7 +16,17 @@ conlp = ConstituentTree.create_pipeline(language, spacy_model_size) #creates pip
 
 
 
-
+def checkImg():
+    cDir = os.getcwd() + "\\conTree.png"
+    dDir = os.getcwd() + "\\depTree.png"
+    ncDir = os.getcwd() + "\\assets\\images\\conTree.png"
+    ndDir = os.getcwd() + "\\assets\images\\depTree.png"
+    if ((os.path.exists(cDir)) and (os.path.exists(dDir))):
+        shutil.move(cDir, ncDir)
+        shutil.move(dDir, ndDir)
+        return "done"
+    else:
+        return "fuck"
 
 
 
@@ -37,4 +47,4 @@ def conTree(sentence: str): #generates constituent tree
 def graphGen(sentence: str):
     depTree(sentence)
     conTree(sentence)
-    return "done"
+    return checkImg()
