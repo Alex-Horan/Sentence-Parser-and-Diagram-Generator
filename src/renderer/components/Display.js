@@ -3,7 +3,7 @@ import { useState } from "react";
 import conImg from "../../../assets/images/conTree.png";
 import depImg from "../../../assets/images/depTree.png"; 
 import { useRef } from "react";
-
+import $ from 'jquery';
 
 //Parent component for entire app, safest and simplest way to replicate app state while still maintaining clean and readable code
 export default function Display() {
@@ -18,7 +18,7 @@ export default function Display() {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(sentence)
-            }).then(() => {firstOpen.current = "no"}, () => {firstOpen.current = "no"})
+            }).then(() => {firstOpen.current = "no"; $(".graph").removeClass('loads');$("#spinner").removeClass('loading').addClass('loads')}, () => {firstOpen.current = "no"; $(".graph").removeClass('loads'); $("#spinner").removeClass('loading').addClass('loads')})
         })
     }
 
@@ -26,6 +26,8 @@ export default function Display() {
     function Form() {
         //will be where the http request to flask server is sent
         function handleFormSubmit(e){
+            $(".graph").addClass('loads');
+            $("#spinner").addClass('loading').removeClass('loads')
             let value = document.getElementById("sentence").value;
             // alert("text value is: " + value + ", radio button value is: " + treeType + ", and the typeset is equal to: " + typeSet);
             httpRequest(value);
@@ -59,13 +61,19 @@ export default function Display() {
             if (treeType === "con") {
 
                 return (
+                    <>
                     <img className="graph" src={conImg}/>
+                    <div id="spinner" className="loads" ></div>
+                    </>
                 )
 
             } else {
 
                 return (
+                    <>
                     <img className="graph" src={depImg}/>
+                    <div id="spinner" className="loads" ></div>
+                    </>
                 )
             }
         }

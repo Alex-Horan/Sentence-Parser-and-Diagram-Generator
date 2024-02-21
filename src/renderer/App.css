@@ -58,3 +58,29 @@ a:hover {
   max-width: 500px;
   max-height: 500px;
 }
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loading {
+  width: 25px;
+  height: 25px;
+  background-image: none;
+  border: 5px solid #f3f3f3; /* Light grey */
+  border-top: 5px solid #383636; /* Black */
+  border-radius: 50%;
+  animation: spinner 1.5s linear infinite;
+  top: 50vh;
+  left: 48vw;
+  
+  position: fixed;
+}
+
+.loads {
+  display: none;
+}
