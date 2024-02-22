@@ -14,9 +14,9 @@ body {
   );
   font-family: sans-serif;
   overflow-y: hidden;
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 button {
@@ -55,8 +55,12 @@ a:hover {
 }
 
 .graph {
+  display: block;
   max-width: 500px;
   max-height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+ 
 }
 
 @keyframes spinner {
@@ -67,6 +71,7 @@ a:hover {
     transform: rotate(360deg);
   }
 }
+
 .loading {
   width: 25px;
   height: 25px;
@@ -83,4 +88,82 @@ a:hover {
 
 .loads {
   display: none;
+}
+
+.SentenceForm {
+  position: absolute;
+  display: block;
+  
+}
+
+.con {
+  position: absolute;
+  
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.TreeType {
+  float: right;
+  margin-right: 5px;
+}
+
+.TextEntry {
+  width: 500px
+}
+.img-wrapper {
+  overflow: auto;
+  height: 800px;
+  position: relative;
+}
+.img-wrapper > img {
+  min-height: 250px;
+  min-width: 420px;
+  height: fit-content;
+  width: fit-content;
+  max-width: fit-content;
+  max-height: fit-content;
+  position: absolute;
+  left: 10px;
+  /* max-width: fit-content;
+  max-height: fit-content; */
+  margin-left: -10px;
+  margin-top: 100px;
+  margin-right: 20px;
+}
+
+@media only screen and (min-width: 754px){
+  .SentenceForm {
+    bottom: 3vh;
+    left: 0.5vw;
+    width: 100%;
+  }
+  .con {
+    left: 17vw;
+    top: 15vh;
+  }
+
+
+}
+
+@media only screen and (min-width: 1024px) {
+  .SentenceForm {
+    bottom: 3vh;
+    left: 0.5vw;
+    width: 100%;
+  }
+  .con {
+    left: 30vw;
+  }
+  .img-wrapper {
+    margin-left: 50px;
+  }
+  }
+
+
+@media only screen and (min-width: 1280px) {
+  .con {
+    left: 35vw;
+  }
 }

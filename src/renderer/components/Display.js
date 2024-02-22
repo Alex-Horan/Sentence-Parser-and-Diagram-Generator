@@ -18,7 +18,18 @@ export default function Display() {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(sentence)
-            }).then(() => {firstOpen.current = "no"; $(".graph").removeClass('loads');$("#spinner").removeClass('loading').addClass('loads')}, () => {firstOpen.current = "no"; $(".graph").removeClass('loads'); $("#spinner").removeClass('loading').addClass('loads')})
+            }).then(() => {
+                firstOpen.current = "no"; 
+                $(".graph").removeClass('loads');
+                $("#spinner")
+                    .removeClass('loading')
+                        .addClass('loads')}
+                , () => {
+                    firstOpen.current = "no"; 
+                    $(".graph").removeClass('loads'); 
+                    $("#spinner")
+                        .removeClass('loading')
+                            .addClass('loads')})
         })
     }
 
@@ -43,10 +54,10 @@ export default function Display() {
         // actual html form that renders on screen
         return (
             <div>
-                <form className="form" name='sentenceForm' onSubmit={handleFormSubmit}>
-                    <input type="text" name="sentence" id="sentence" required="true"></input>
-                    <label><input type="radio" name="tree" value="con" onChange={handleRadioChange} checked={treeType === "con"}></input>Constituents</label>
-                    <label><input type="radio" name="tree" value="dep" onChange={handleRadioChange} checked={treeType === "dep"}></input>Dependencies</label>
+                <form className="SentenceForm" name='sentenceForm' onSubmit={handleFormSubmit}>
+                    <input type="text" name="sentence" className="TextEntry" id="sentence" required="true" placeholder="Enter a sentence..."></input>
+                    <label className="TreeType"><input type="radio" name="tree" className="TreeType" value="dep" onChange={handleRadioChange} checked={treeType === "dep"}></input>Dependencies</label>
+                    <label className="TreeType"><input type="radio" name="tree" className="TreeType" value="con" onChange={handleRadioChange} checked={treeType === "con"}></input>Constituents</label>
                 </form>
             </div>     
         )
@@ -62,7 +73,7 @@ export default function Display() {
 
                 return (
                     <>
-                    <img className="graph" src={conImg}/>
+                    <img className="graph con" src={conImg}/>
                     <div id="spinner" className="loads" ></div>
                     </>
                 )
@@ -71,7 +82,9 @@ export default function Display() {
 
                 return (
                     <>
-                    <img className="graph" src={depImg}/>
+                    <div className="img-wrapper">
+                    <img className="graph dep" src={depImg}/>
+                    </div>
                     <div id="spinner" className="loads" ></div>
                     </>
                 )
