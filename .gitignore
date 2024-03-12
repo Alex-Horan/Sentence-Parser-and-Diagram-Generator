@@ -101,4 +101,7 @@ npm-debug.log.*
 *.sass.d.ts
 *.scss.d.ts
 
+/Sentence-Parser-and-Diagram-Generator/FlaskServer/__pycache__/*
 /Sentence-Parser-and-Diagram-Generator/FlaskServer/__pycache__/
+/FlaskServer/__pycache__/*
+/FlaskServer/__pycache__/
