@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, redirect, request, session, jsonify, render_template
+    Blueprint, request, jsonify
 )
 from . import sentParsing
 import os
@@ -10,14 +10,7 @@ bp = Blueprint('graph', __name__, url_prefix='/') #helps separate views from the
 @bp.route('/', methods=(['GET','POST'])) #routing the default page
 def index():
     if (request.method == 'POST') and request.is_json:
-        print(request.url)
-        print("received post request")
         response = request.get_json()
-        print(response)
-        # if response:
-        #     return response
-        # else:
-        #     return "no response"
         result = sentParsing.graphGen(response)
         if result:
             return result

@@ -9,9 +9,9 @@ import os
 
 config = imgkit.config(wkhtmltoimage="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe")
 
-nlp = spacy.load("en_core_web_sm") # loads spacy pipeline
+nlp = spacy.load("en_core_web_md") # loads spacy pipeline
 language = Language.English #sets the language for con tree
-spacy_model_size = ConstituentTree.SpacyModelSize.Small
+spacy_model_size = ConstituentTree.SpacyModelSize.Medium
 conlp = ConstituentTree.create_pipeline(language, spacy_model_size) #creates pipeline
 
 
@@ -26,7 +26,7 @@ def checkImg():
         shutil.move(dDir, ndDir)
         return "done"
     else:
-        return "fuck"
+        return "image move failed"
 
 
 
