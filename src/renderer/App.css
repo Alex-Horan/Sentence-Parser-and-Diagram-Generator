@@ -96,13 +96,6 @@ a:hover {
   
 }
 
-.con {
-  position: absolute;
-  
-  margin-left: auto;
-  margin-right: auto;
-
-}
 
 .TreeType {
   float: right;
@@ -112,42 +105,76 @@ a:hover {
 .TextEntry {
   width: 500px
 }
-.img-wrapper {
-  overflow: auto;
-  height: 800px;
-  position: relative;
-}
-.img-wrapper > img {
-  min-height: 250px;
-  min-width: 420px;
-  height: fit-content;
-  width: fit-content;
-  max-width: fit-content;
-  max-height: fit-content;
-  position: absolute;
-  left: 10px;
-  /* max-width: fit-content;
-  max-height: fit-content; */
-  margin-left: -10px;
-  margin-top: 100px;
-  margin-right: 20px;
+
+
+
+
+.Start > div > form {
+  margin-bottom: 0px;
 }
 
 @media only screen and (min-width: 754px){
+  .con {
+    margin-left: auto;
+    margin-right: auto;
+  }
   .SentenceForm {
     bottom: 3vh;
     left: 0.5vw;
     width: 100%;
+    margin-top: 0px;
+    /* margin-bottom: 130px; */
   }
-  .con {
-    left: 17vw;
-    top: 15vh;
+  .conDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
   }
+  .depDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /* padding-top: 12%; */
+    
+  }
+
+  .img-wrapper {
+    overflow: auto;
+    height: 800px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .img-wrapper > img {
+    min-height: 250px;
+    min-width: 420px;
+    height: fit-content;
+    width: fit-content;
+    max-width: fit-content;
+    
+    max-height: 500px;
+    padding-top: 12.5%;
+    /* position: absolute; */
+    /* left: 10px; */
+    /* max-width: fit-content;
+    max-height: fit-content; */
+    /* margin-left: auto; */
+    /* margin-top: 100px; */
+    /* margin-right: auto; */
+  }
+  /* .con {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 140px;
+    margin-bottom: 50px;
+  } */
 
 
 }
 
-@media only screen and (min-width: 1024px) {
+/* @media only screen and (min-width: 1024px) {
   .SentenceForm {
     bottom: 3vh;
     left: 0.5vw;
@@ -166,4 +193,4 @@ a:hover {
   .con {
     left: 35vw;
   }
-}
+} */

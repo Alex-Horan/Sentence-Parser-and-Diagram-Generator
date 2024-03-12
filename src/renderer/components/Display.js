@@ -10,26 +10,34 @@ export default function Display() {
     const firstOpen = useRef("yes");
     const [treeType, setTreeType] = useState("con"); //stores the selected type of graph
     
-    
-    function httpRequest(sentence) {
+    //network request to the flask server
+    async function httpRequest(sentence) {
 
-        return new Promise(() => {
+        return await new Promise(() => {
             fetch("http://127.0.0.1:5000", {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(sentence)
             }).then(() => {
+                //removes buffer circle after request finishes
                 firstOpen.current = "no"; 
+                $(".TreeType").prop("disabled", false);
+                $(".TextEntry").prop("disabled", false);
                 $(".graph").removeClass('loads');
                 $("#spinner")
                     .removeClass('loading')
-                        .addClass('loads')}
-                , () => {
-                    firstOpen.current = "no"; 
-                    $(".graph").removeClass('loads'); 
-                    $("#spinner")
-                        .removeClass('loading')
-                            .addClass('loads')})
+                        .addClass('loads');},
+                 () => {
+                    // firstOpen.current = "no"; 
+                    // $(".TreeType").prop("disabled", false);
+                    // $(".TextEntry").prop("disabled", false);
+                    // $(".graph").removeClass('loads'); 
+                    // $("#spinner")
+                    //     .removeClass('loading')
+                    //         .addClass('loads')
+                    alert("Error 01: Network request has failed. Please ensure you are connected to the internet and the Flask server is running on port 5000");
+                    throw new Error("Fetch rejected");
+                })
         })
     }
 
@@ -37,6 +45,9 @@ export default function Display() {
     function Form() {
         //will be where the http request to flask server is sent
         function handleFormSubmit(e){
+            //replaces image with loading circle
+            $(".TreeType").prop("disabled", true);
+            $(".TextEntry").prop("disabled", true);
             $(".graph").addClass('loads');
             $("#spinner").addClass('loading').removeClass('loads')
             let value = document.getElementById("sentence").value;
@@ -48,6 +59,7 @@ export default function Display() {
         //input handler for radio buttons
         function handleRadioChange(e){
             setTreeType(e.target.value);
+            
             // e.preventDefault();
         }
         
@@ -72,21 +84,22 @@ export default function Display() {
             if (treeType === "con") {
 
                 return (
-                    <>
+                    <div className="conDiv">
                     <img className="graph con" src={conImg}/>
                     <div id="spinner" className="loads" ></div>
-                    </>
+                    </div>
                 )
 
             } else {
 
                 return (
-                    <>
-                    <div className="img-wrapper">
-                    <img className="graph dep" src={depImg}/>
+                    <div className="depDiv">
+                        <div className="img-wrapper">
+                            <img className="graph" src={depImg}/>
+                        </div>
+
+                        <div id="spinner" className="loads" ></div>
                     </div>
-                    <div id="spinner" className="loads" ></div>
-                    </>
                 )
             }
         }
@@ -110,7 +123,7 @@ export default function Display() {
         )
     } else if (firstOpen.current === "yes") {
         return (
-            <div>
+            <div className="Start">
                 <Form />
             </div>
         )
