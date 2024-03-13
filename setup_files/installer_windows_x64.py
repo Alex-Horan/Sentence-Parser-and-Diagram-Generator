@@ -69,7 +69,7 @@ def installProj():
             
 
 def installNodeMods():
-    instN = run("npm install")
+    instN = run("npm install --prefix ./Sentence-Parser-and-Diagram-Generator/")
     if instN.returncode != 0:
         print("Failed to install node dependencies.")
         input("Press any key to exit...")
