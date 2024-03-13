@@ -32,7 +32,7 @@ def spacyInstFix():
                 print("Finished installing spaCy model")
     installNodeMods()
 
-def checkPreReq():
+def Start():
     gcC = run("gcc --version")
     if gcC.returncode != 0:
         print("GCC is not installed, please install msys2 and try again")
@@ -47,7 +47,6 @@ def checkPreReq():
             exit()
         else:
             print(f"{r}: Installed")
-
     installProj()
 
 
@@ -70,8 +69,15 @@ def installProj():
             
 
 def installNodeMods():
-    instN = run("npm install --prefix ./")
-    pass
+    instN = run("npm install")
+    if instN.returncode != 0:
+        print("Failed to install node dependencies.")
+        input("Press any key to exit...")
+        exit()
+    else:
+        print("Finished installing Node packages")
 
-checkPreReq()
+
+
+Start()
     # run("wget https://github.com/Alex-Horan/Sentence-Parser-and-Diagram-Generator/blob/master/requirements.txt")
