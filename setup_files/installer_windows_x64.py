@@ -1,6 +1,6 @@
 import subprocess
 import os
-
+# THIS FILE IS INCOMPLETE
 deps = ["Magick", "pip", "wkhtmltoimage", "node", "git"]
 
 def run(cmd):
@@ -33,11 +33,6 @@ def spacyInstFix():
     installNodeMods()
 
 def Start():
-    gcC = run("gcc --version")
-    if gcC.returncode != 0:
-        print("GCC is not installed, please install msys2 and try again")
-        input("Press any key to exit...")
-        exit()
 
     for r in deps:
         result = run(f"{r} --version")

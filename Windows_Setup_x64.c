@@ -2,7 +2,9 @@
 #include <stdlib.h>
 
 int main() {
-    system("curl https://raw.githubusercontent.com/Alex-Horan/Sentence-Parser-and-Diagram-Generator/master/setup_files/installer_windows_x64.py -o installer_windows_x64.py");
-    system("py ./installer_windows_x64.py");
+    //downloads setup python script
+    system("curl https://raw.githubusercontent.com/Alex-Horan/Sentence-Parser-and-Diagram-Generator/master/setup_files/Installer_windows_x64.py -o Installer_windows_x64.py");
+    //runs said script
+    system("py ./Installer_windows_x64.py");
     return 0;
 }
