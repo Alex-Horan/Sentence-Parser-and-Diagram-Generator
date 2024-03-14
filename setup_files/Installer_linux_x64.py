@@ -46,8 +46,9 @@ def linCMD():
 def spacyCMD():
     print("[*] Don't worry if it seems like it's frozen here, spacy takes anywhere from 10 seconds to 20 years to install depending on its mood apparently")
     # spacy is a bit weird when installing so i added this as a safeguard in case spacy just kinda dies when attempting to install normally
-    instSpacy = run(["cd ./Sentence-Parser; source ./App/bin/activate; pip install setuptools wheel spacy; python3 -m spacy download en_core_web_md;"])
-    if instSpacy.returncode != 0:
+    instSpacy = subprocess.Popen(["cd ./Sentence-Parser; ./App/bin/python3 -m pip install setuptools wheel spacy; ./App/bin/python3 -m spacy download en_core_web_md;"], shell=True, stdout=subprocess.PIPE)
+    code = instSpacy.communicate()
+    if code.returncode != 0:
         print("Failed to install spacy in the virtual environment")
         input("Press any key to exit...")
         exit()
@@ -57,8 +58,9 @@ def spacyCMD():
 
 def projCMD():
     # clones the github repo
-    instProj = run(["cd ./Sentence-Parser; source ./App/bin/activate; git clone https://github.com/Alex-Horan/Sentence-Parser-and-Diagram-Generator.git"])
-    if instProj.returncode != 0:
+    instProj = subprocess.Popen(["cd ./Sentence-Parser; git clone https://github.com/Alex-Horan/Sentence-Parser-and-Diagram-Generator.git"], shell=True, stdout=subprocess.PIPE)
+    code = instProj.communicate()
+    if code.returncode != 0:
         print("Failed to clone project")
         input("Press any key to exit...")
         exit()
@@ -68,8 +70,9 @@ def projCMD():
 
 def pyCMD():
     # installs all of the python deps into the virtenv
-    instPy = run(["cd ./Sentence-Parser; source ./App/bin/activate; pip install -r ./Sentence-Parser-and-Diagram-Generator/requirements.txt;"])
-    if instPy.returncode != 0:
+    instPy = subprocess.Popen(["cd ./Sentence-Parser; ./App/bin/python3 -m pip install -r ./Sentence-Parser-and-Diagram-Generator/requirements.txt;"], shell=True, stdout=subprocess.PIPE)
+    code = instPy.communicate()
+    if code.returncode != 0:
         print("Failed to install python dependencies.")
         input("Press any key to exit...")
         exit()
