@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 int main() {
-    system("echo $PWD; sudo source ../App/bin/activate; python3 -m flask --app FlaskServer run");
+    system("python3 ./startAppLinux.py");
     system("npm start");
     return 0;
 }
