@@ -1,8 +1,9 @@
 import subprocess
+import os
 
 def startApp():
-    subprocess.run(["echo $PWD"], shell=True)
-    result = subprocess.run(["echo $PWD; source ../App/bin/activate; python3 -m flask --app FlaskServer run;"], shell=True, capture_output=True)
+    venvPath = (os.getcwd()).replace("Sentence-Parser-and-Diagram-Generator", "")
+    result = subprocess.run([f"source {venvPath}/App/bin/activate; python3 -m flask --app FlaskServer run;"], shell=True, capture_output=True)
     if result.returncode != 0:
         print("Failed to start Flask Server")
         input("Press <Enter> to exit...")
