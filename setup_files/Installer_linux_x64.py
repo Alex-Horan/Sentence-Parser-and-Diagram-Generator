@@ -103,7 +103,7 @@ def finInst():
         input("Press any key to exit...")
         # very goofy line of code, it makes this file delete itself
         # the reason for deleting this file after completion is because after cloning the repo in an earlier step, there will be 2 copies of the setup script
-        # remove(argv[0])
+        remove(argv[0])
         exit()
 
 start()
