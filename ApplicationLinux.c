@@ -3,6 +3,5 @@
 
 int main() {
     system("python3 ./startAppLinux.py");
-    system("npm start");
     return 0;
 }
