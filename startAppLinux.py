@@ -1,7 +1,7 @@
 import subprocess
 
 def startApp():
-    result = subprocess.run(["source ../App/bin/activate; python3 -m flask --app FlaskServer run;"], shell=True, capture_output=True)
+    result = subprocess.run(["echo $PWD; source ../App/bin/activate; python3 -m flask --app FlaskServer run;"], shell=True, capture_output=True)
     if result.returncode != 0:
         print("Failed to start Flask Server")
         input("Press <Enter> to exit...")
