@@ -46,9 +46,8 @@ def linCMD():
 def spacyCMD():
     print("[*] Don't worry if it seems like it's frozen here, spacy takes anywhere from 10 seconds to 20 years to install depending on its mood apparently")
     # spacy is a bit weird when installing so i added this as a safeguard in case spacy just kinda dies when attempting to install normally
-    instSpacy = subprocess.Popen(["cd ./Sentence-Parser; ./App/bin/python3 -m pip install setuptools wheel spacy; ./App/bin/python3 -m spacy download en_core_web_md;"], shell=True, stdout=subprocess.PIPE)
-    code = instSpacy.communicate()
-    if code.returncode != 0:
+    instSpacy = run(["cd ./Sentence-Parser; ./App/bin/python3 -m pip install setuptools wheel spacy; ./App/bin/python3 -m spacy download en_core_web_md;"], shell=True, capture_output=True)
+    if instSpacy.returncode != 0:
         print("Failed to install spacy in the virtual environment")
         input("Press any key to exit...")
         exit()
