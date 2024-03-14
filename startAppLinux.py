@@ -2,7 +2,7 @@ import subprocess
 import os
 
 def startApp():
-    result = subprocess.Popen([f"../App/bin/python3 -m flask --app FlaskServer run;"], shell=True, stdout=subprocess.PIPE)
+    result = subprocess.Popen(["../App/bin/python3 -m flask --app FlaskServer run;"], shell=True, stdout=subprocess.PIPE)
     code = result.communicate()
     if code.returncode != 0:
         print("Failed to start Flask Server")
