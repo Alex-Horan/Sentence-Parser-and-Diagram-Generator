@@ -8,9 +8,12 @@ import shutil
 import os
 import sys
 
+config=""
 
-
-config = imgkit.config(wkhtmltoimage="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe")
+if 'win' in sys.platform():
+    config = imgkit.config(wkhtmltoimage="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe")
+else:
+    config = imgkit.config(wkhtmltoimage="/usr/bin/wkhtmltoimage")
 
 nlp = spacy.load("en_core_web_md") # loads spacy pipeline
 language = Language.English #sets the language for con tree
@@ -20,10 +23,10 @@ conlp = ConstituentTree.create_pipeline(language, spacy_model_size) #creates pip
 
 
 def checkImg():
-    cDir = os.getcwd() + "\\conTree.png"
-    dDir = os.getcwd() + "\\depTree.png"
-    ncDir = os.getcwd() + "\\assets\\images\\conTree.png"
-    ndDir = os.getcwd() + "\\assets\images\\depTree.png"
+    cDir = os.getcwd() + "/conTree.png"
+    dDir = os.getcwd() + "/depTree.png"
+    ncDir = os.getcwd() + "/assets/images/conTree.png"
+    ndDir = os.getcwd() + "/assets/images/depTree.png"
     if ((os.path.exists(cDir)) and (os.path.exists(dDir))):
         shutil.move(cDir, ncDir)
         shutil.move(dDir, ndDir)
