@@ -1,13 +1,16 @@
 import spacy
 import os.path
 from spacy import displacy
-from constituent_treelib import ConstituentTree, Language, Structure
+from constituent_treelib import ConstituentTree, Language
 import imgkit
 from flask import jsonify
 import shutil
 import os
+import sys
 
-# config = imgkit.config(wkhtmltoimage="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe")
+
+
+config = imgkit.config(wkhtmltoimage="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe")
 
 nlp = spacy.load("en_core_web_md") # loads spacy pipeline
 language = Language.English #sets the language for con tree
@@ -34,7 +37,7 @@ def depTree(sentence: str): #generates dependency tree
     if sentence is not None:
         doc = nlp(sentence)
         html = displacy.render(doc, style="dep")
-        imgkit.from_string(html, 'depTree.png')
+        imgkit.from_string(html, 'depTree.png', config=config)
         
         
     
@@ -45,6 +48,7 @@ def conTree(sentence: str): #generates constituent tree
         
 
 def graphGen(sentence: str):
+    print(os.getcwd())
     depTree(sentence)
     conTree(sentence)
     return checkImg()
