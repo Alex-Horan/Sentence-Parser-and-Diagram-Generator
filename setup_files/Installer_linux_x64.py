@@ -69,9 +69,8 @@ def projCMD():
 
 def pyCMD():
     # installs all of the python deps into the virtenv
-    instPy = subprocess.Popen(["cd ./Sentence-Parser; ./App/bin/python3 -m pip install -r ./Sentence-Parser-and-Diagram-Generator/requirements.txt;"], shell=True, stdout=subprocess.PIPE)
-    code = instPy.communicate()
-    if code.returncode != 0:
+    instPy = run(["cd ./Sentence-Parser; ./App/bin/python3 -m pip install -r ./Sentence-Parser-and-Diagram-Generator/requirements.txt;"])
+    if instPy.returncode != 0:
         print("Failed to install python dependencies.")
         input("Press any key to exit...")
         exit()
