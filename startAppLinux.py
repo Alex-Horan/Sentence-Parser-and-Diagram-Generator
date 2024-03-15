@@ -8,13 +8,14 @@ def startApp():
         input("Press <Enter> to exit...")
         exit()
     else:
-        print("Flask server has started")
-        appStart = subprocess.run(["npm start"], shell=True, capture_output=True)
-        if appStart.returncode != 0:
-            print("Failed to start Electron app.")
-            input("Press <Enter> to exit...")
-            exit()
-        else:
-            pass
+        pass
+    print("Flask server has started")
+    appStart = subprocess.run(["npm start"], shell=True, capture_output=True)
+    if appStart.returncode != 0:
+        print("Failed to start Electron app.")
+        input("Press <Enter> to exit...")
+        exit()
+    else:
+        pass
 
 startApp()
