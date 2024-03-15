@@ -57,9 +57,9 @@ def spacyCMD():
 
 def projCMD():
     # clones the github repo
-    instProj = subprocess.Popen(["cd ./Sentence-Parser; git clone https://github.com/Alex-Horan/Sentence-Parser-and-Diagram-Generator.git"], shell=True, stdout=subprocess.PIPE)
-    code = instProj.communicate()
-    if code.returncode != 0:
+    instProj = run(["cd ./Sentence-Parser; git clone https://github.com/Alex-Horan/Sentence-Parser-and-Diagram-Generator.git"])
+    # code = instProj.communicate()
+    if instProj.returncode != 0:
         print("Failed to clone project")
         input("Press any key to exit...")
         exit()
