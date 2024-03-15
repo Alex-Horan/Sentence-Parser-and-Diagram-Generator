@@ -7,10 +7,12 @@ from flask import jsonify
 import shutil
 import os
 import sys
+import platform
 
 config=""
 
-if 'win' in sys.platform():
+curOS = os.name
+if curOS == "nt":
     config = imgkit.config(wkhtmltoimage="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe")
 else:
     config = imgkit.config(wkhtmltoimage="/usr/bin/wkhtmltoimage")
