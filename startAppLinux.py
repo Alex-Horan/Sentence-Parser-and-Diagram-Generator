@@ -22,7 +22,7 @@ def startApp():
         time.sleep(0.5)
     
 
-    k = subprocess.run(["npx kill-port --port 1212, 5000"], shell=True, capture_output=True)
+    k = subprocess.run(["npx kill-port --port 1212,5000"], shell=True, capture_output=True)
     if k.returncode != 0:
         print("Failed to kill electron app running on port 1212 and Flask server running on port 5000")
         exit()
