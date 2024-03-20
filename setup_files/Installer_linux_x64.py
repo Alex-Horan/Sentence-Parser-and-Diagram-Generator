@@ -39,8 +39,8 @@ def linCMD():
         makeEnv = run(["cd ./Sentence-Parser; python3 -m venv App;"])
         while makeEnv.returncode is None:
             with Spinner() as spinner:
-                while True:
-                    time.sleep(0.2)
+                for i in range(100):
+                    time.sleep(0.02)
                     spinner.next()
         if makeEnv.returncode != 0:
             print("Failed to create virtual python environment.")
