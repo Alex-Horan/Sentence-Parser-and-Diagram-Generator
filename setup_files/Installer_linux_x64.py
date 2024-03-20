@@ -121,13 +121,12 @@ def finInst():
             remove(argv[0])
             exit()
         else:
-            pass
-        print("Finished installing the application!")
-        input("Press any key to exit...")
+            print("Finished installing the application!")
+            input("Press any key to exit...")
+            remove(argv[0])
+            exit()
         # very goofy line of code, it makes this file delete itself
         # the reason for deleting this file after completion is because after cloning the repo in an earlier step, there will be 2 copies of the setup script
-        remove(argv[0])
-        exit()
 
 start()
 
