@@ -52,7 +52,7 @@ def depTree(sentence: str): #generates dependency tree
 def conTree(sentence: str): #generates constituent tree
     if sentence is not None:
         tree = ConstituentTree(sentence, conlp)
-        tree.export_tree(destination_filepath='./conTree.pdf', verbose=True, wkhtmltopdf_bin_filepath=conConfig)
+        tree.export_tree(destination_filepath='./conTree.jpg', verbose=True)
         
 
 def graphGen(sentence: str):
