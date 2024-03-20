@@ -52,6 +52,7 @@ def spacyCMD():
         input("Press any key to exit...")
         exit()
     else:
+        print("Finished installing Spacy, now installing spaCy model.")
         instModel = run(["cd ./Sentence-Parser; ./App/bin/python -m spacy download en_core_web_md;"])
         if instModel.returncode != 0:
             print("Failed to install spaCy model.")
