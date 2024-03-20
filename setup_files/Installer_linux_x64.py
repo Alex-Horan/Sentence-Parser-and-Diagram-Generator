@@ -1,8 +1,6 @@
 import subprocess
 from os import remove
 from sys import argv
-from progress.spinner import Spinner
-import time
 
 deps = ["magick", "pip", "wkhtmltopdf", "node", "git", "gcc"]
 
@@ -37,11 +35,6 @@ def linCMD():
 
         #creates a venv for the python deps, added both to make testing and debugging easier and to make it more convenient for others using the app
         makeEnv = run(["cd ./Sentence-Parser; python3 -m venv App;"])
-        while makeEnv.returncode is None:
-            with Spinner() as spinner:
-                for i in range(100):
-                    time.sleep(0.02)
-                    spinner.next()
         if makeEnv.returncode != 0:
             print("Failed to create virtual python environment.")
             input("Press any key to exit...")
