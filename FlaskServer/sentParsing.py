@@ -58,7 +58,7 @@ def conTree(sentence: str): #generates constituent tree
         tree.export_tree(destination_filepath='./conTree.pdf', verbose=True, wkhtmltopdf_bin_filepath=conConfig)
         pdf = fitz.open("conTree.pdf")
         for page in pdf:
-            pix = page.get_pixmap(dpi=300)
+            pix = page.get_pixmap(dpi=1300)
             pix.save("conTree.png")
 
 def graphGen(sentence: str):
