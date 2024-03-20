@@ -21,6 +21,8 @@ else:
     conConfig="/usr/bin/wkhtmltopdf"
     config = imgkit.config(wkhtmltoimage="/usr/bin/wkhtmltoimage")
 
+
+
 nlp = spacy.load("en_core_web_md") # loads spacy pipeline
 language = Language.English #sets the language for con tree
 spacy_model_size = ConstituentTree.SpacyModelSize.Medium
@@ -56,7 +58,7 @@ def conTree(sentence: str): #generates constituent tree
         tree.export_tree(destination_filepath='./conTree.pdf', verbose=True, wkhtmltopdf_bin_filepath=conConfig)
         pdf = fitz.open("conTree.pdf")
         for page in pdf:
-            pix = page.get_pixmap()
+            pix = page.get_pixmap(dpi=300)
             pix.save("conTree.png")
 
 def graphGen(sentence: str):
