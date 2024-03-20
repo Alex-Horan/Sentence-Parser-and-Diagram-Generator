@@ -98,7 +98,11 @@ const createWindow = async () => {
   });
 
   mainWindow.on('closed', () => {
-    mainWindow = null;
+    kill(5000, 'tcp')
+      .then(console.log)
+      .catch(console.log);
+
+    app.quit();
   });
 
   // const menuBuilder = new MenuBuilder(mainWindow);
@@ -123,11 +127,17 @@ app.on('window-all-closed', () => {
   // Respect the OSX convention of having the application in memory even
   // after all windows have been closed
   if (process.platform !== 'darwin') {
-    app.quit();
     kill(5000, 'tcp')
       .then(console.log)
-      .catch(console.log)
+      .catch(console.log);
+
+    app.quit();
   }
+  kill(5000, 'tcp')
+      .then(console.log)
+      .catch(console.log);
+  app.quit()
+    
 });
 
 app
