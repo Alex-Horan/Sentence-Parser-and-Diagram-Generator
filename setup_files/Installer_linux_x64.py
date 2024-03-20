@@ -52,15 +52,15 @@ def spacyCMD():
         input("Press any key to exit...")
         exit()
     else:
-        print("Finished installing Spacy, now installing spaCy model.")
-        instModel = run(["cd ./Sentence-Parser; ./App/bin/python -m spacy download en_core_web_md;"])
-        if instModel.returncode != 0:
-            print("Failed to install spaCy model.")
-            input("Press <Enter> to exit...")
-            exit()
-        else:
-            print("Finished preventing spaCy jank!")
-            projCMD()
+        # print("Finished installing Spacy, now installing spaCy model.")
+        # instModel = run(["cd ./Sentence-Parser; ./App/bin/python -m spacy download en_core_web_md;"])
+        # if instModel.returncode != 0:
+        #     print("Failed to install spaCy model.")
+        #     input("Press <Enter> to exit...")
+        #     exit()
+        # else:
+        print("Finished preventing spaCy jank!")
+        projCMD()
 
 def projCMD():
     # clones the github repo
