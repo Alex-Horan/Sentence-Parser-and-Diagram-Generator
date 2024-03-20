@@ -2,7 +2,7 @@ import subprocess
 from os import remove
 from sys import argv
 
-deps = ["magick", "pip", "wkhtmltoimage", "node", "git", "gcc"]
+deps = ["magick", "pip", "wkhtmltopdf", "node", "git", "gcc"]
 
 def run(cmd):
     completed = subprocess.run(cmd, shell=True, capture_output=True)
