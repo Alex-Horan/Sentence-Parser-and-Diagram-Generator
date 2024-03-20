@@ -10,11 +10,14 @@ import sys
 import platform
 
 config=""
+conConfig=""
 
 curOS = os.name
 if curOS == "nt":
+    conConfig="C:\\Program Files\\wkthmltopdf\\bin\\wkhtmltopdf.exe"
     config = imgkit.config(wkhtmltoimage="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe")
 else:
+    conConfig="/usr/bin/wkhtmltopdf"
     config = imgkit.config(wkhtmltoimage="/usr/bin/wkhtmltoimage")
 
 nlp = spacy.load("en_core_web_md") # loads spacy pipeline
@@ -49,7 +52,7 @@ def depTree(sentence: str): #generates dependency tree
 def conTree(sentence: str): #generates constituent tree
     if sentence is not None:
         tree = ConstituentTree(sentence, conlp)
-        tree.export_tree(destination_filepath='./conTree.pdf', verbose=True)
+        tree.export_tree(destination_filepath='./conTree.pdf', verbose=True, wkhtmltopdf_bin_filepath=conConfig)
         
 
 def graphGen(sentence: str):
