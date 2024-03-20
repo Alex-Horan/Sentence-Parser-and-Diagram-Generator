@@ -14,6 +14,7 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 // import MenuBuilder from './menu';  
 import { resolveHtmlPath } from './util';
+const kill = require('kill-port');
 
 class AppUpdater {
   constructor() {
@@ -123,6 +124,9 @@ app.on('window-all-closed', () => {
   // after all windows have been closed
   if (process.platform !== 'darwin') {
     app.quit();
+    kill(5000, 'tcp')
+      .then(console.log)
+      .catch(console.log)
   }
 });
 
