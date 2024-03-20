@@ -4,3 +4,4 @@ flask_Cors
 imgkit
 tk
 pymupdf
+progressbar
