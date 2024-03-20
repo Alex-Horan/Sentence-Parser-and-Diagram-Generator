@@ -15,6 +15,7 @@ def start():
         if result.returncode != 0:
             print(f"ERROR {result.stderr}: {r} is not installed or is not accessible.")
             input("Press any key to exit...")
+            remove(argv[0])
             exit()
         else:
             print(f"{r}: Installed")
@@ -26,6 +27,7 @@ def linCMD():
     if instStart.returncode != 0:
         print("Unable to create directory, please check file permissions")
         input("Press any key to exit...")
+        remove(argv[0])
         exit()
     else:
         print("Finished creating directory for the app!")
@@ -38,6 +40,7 @@ def linCMD():
         if makeEnv.returncode != 0:
             print("Failed to create virtual python environment.")
             input("Press any key to exit...")
+            remove(argv[0])
             exit()
         else:
             print("Finished creating a virtual environment!")
@@ -50,6 +53,7 @@ def spacyCMD():
     if instSpacy.returncode != 0:
         print("Failed to install spacy in the virtual environment")
         input("Press any key to exit...")
+        remove(argv[0])
         exit()
     else:
         print("Finished installing Spacy, now installing spaCy model.")
@@ -57,6 +61,7 @@ def spacyCMD():
         if instModel.returncode != 0:
             print("Failed to install spaCy model.")
             input("Press <Enter> to exit...")
+            remove(argv[0])
             exit()
         else:
             print("Finished preventing spaCy jank!")
@@ -64,11 +69,12 @@ def spacyCMD():
 
 def projCMD():
     # clones the github repo
-    instProj = run(["cd ./Sentence-Parser; git clone https://github.com/Alex-Horan/Sentence-Parser-and-Diagram-Generator.git"])
+    instProj = run(["cd ./Sentence-Parser; git clone https://github.com/Alex-Horan/Sentence-Parser-and-Diagram-Generator.git; rm -rf ./Sentence-Parser-and-Diagram-Generator/Windows_Setup_x64.c ./Sentence-Parser-and-Diagram-Generator/setup_files/ ./Sentence-Parser-and-Diagram-Generator/Linux_Setup_x64.c"])
     # code = instProj.communicate()
     if instProj.returncode != 0:
         print("Failed to clone project")
         input("Press any key to exit...")
+        remove(argv[0])
         exit()
     else:
         print("Finished cloning files!")
@@ -80,6 +86,7 @@ def pyCMD():
     if instPy.returncode != 0:
         print("Failed to install python dependencies.")
         input("Press any key to exit...")
+        remove(argv[0])
         exit()
     else:
         print("Finished installing python dependencies!")
@@ -91,6 +98,7 @@ def nodeCMD():
     if instNode.returncode != 0:
         print("Failed to install npm packages")
         input("Press any key to exit...")
+        remove(argv[0])
         exit()
     else:
         print("Finished installing npm packages!")
@@ -103,8 +111,17 @@ def finInst():
     if makeApp.returncode != 0:
         print("Failed to install app.")
         input("Press any key to exit...")
+        remove(argv[0])
         exit()
     else:
+        cleanUp = run(["rm -rf ./Sentence-Parser-and-Diagram-Generator/ApplicationLinux.c"])
+        if cleanUp.returncode != 0:
+            print("Failed to cleanup setup files.")
+            input("Press <Enter> to exit...")
+            remove(argv[0])
+            exit()
+        else:
+            pass
         print("Finished installing the application!")
         input("Press any key to exit...")
         # very goofy line of code, it makes this file delete itself
