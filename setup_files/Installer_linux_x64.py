@@ -114,7 +114,7 @@ def finInst():
         remove(argv[0])
         exit()
     else:
-        cleanUp = run(["rm -rf ./Sentence-Parser-and-Diagram-Generator/ApplicationLinux.c"])
+        cleanUp = run(["cd ./Sentence-Parser-and-Diagram-Generator; rm -rf ./Sentence-Parser-and-Diagram-Generator/ApplicationLinux.c"])
         if cleanUp.returncode != 0:
             print("Failed to cleanup setup files.")
             input("Press <Enter> to exit...")
