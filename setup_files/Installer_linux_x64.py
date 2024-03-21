@@ -1,5 +1,6 @@
 import subprocess
 from os import remove
+import os
 from sys import argv
 
 deps = ["magick", "pip", "wkhtmltopdf", "node", "git", "gcc"]
@@ -116,11 +117,13 @@ def finInst():
     else:
         cleanUp = run(["cd ./Sentence-Parser-and-Diagram-Generator; rm -rf ./Sentence-Parser-and-Diagram-Generator/ApplicationLinux.c"])
         if cleanUp.returncode != 0:
+            print("current path: " + os.getcwd())
             print("Failed to cleanup setup files.")
             input("Press <Enter> to exit...")
             remove(argv[0])
             exit()
         else:
+            print("current path: " + os.getcwd())
             print("Finished installing the application!")
             input("Press any key to exit...")
             remove(argv[0])

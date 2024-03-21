@@ -98,11 +98,10 @@ const createWindow = async () => {
   });
 
   mainWindow.on('closed', () => {
-    kill(5000, 'tcp')
-      .then(console.log)
-      .catch(console.log);
-
-    app.quit();
+    fetch('localhost:5000/', {
+      method: "GET",
+      headers: {"Content-Type": "application/json"}
+    }).then(() => app.quit, () => app.quit)
   });
 
   // const menuBuilder = new MenuBuilder(mainWindow);
@@ -127,16 +126,30 @@ app.on('window-all-closed', () => {
   // Respect the OSX convention of having the application in memory even
   // after all windows have been closed
   if (process.platform !== 'darwin') {
-    kill(5000, 'tcp')
-      .then(console.log)
-      .catch(console.log);
-
-    app.quit();
+    fetch('localhost:5000/', {
+      method: "GET",
+      headers: {"Content-Type": "application/json"}
+    }).then(() => {
+      kill(5000, 'tcp')
+      .then(app.quit)
+      .catch(console.log)
+    }, () => {
+      kill(5000, 'tcp')
+      .then(app.quit)
+      .catch(console.log)})
   }
-  kill(5000, 'tcp')
-      .then(console.log)
-      .catch(console.log);
-  app.quit()
+  
+  fetch('localhost:5000/', {
+    method: "GET",
+    headers: {"Content-Type": "application/json"}
+  }).then(() => {
+    kill(5000, 'tcp')
+    .then(app.quit)
+    .catch(console.log)
+  }, () => {
+    kill(5000, 'tcp')
+    .then(app.quit)
+    .catch(console.log)})
     
 });
 

@@ -2,8 +2,7 @@ from flask import (
     Blueprint, request, jsonify
 )
 from . import sentParsing
-import os
-import os.path
+import os, signal
 
 bp = Blueprint('graph', __name__, url_prefix='/') #helps separate views from the init file
 
@@ -16,3 +15,6 @@ def index():
             return result
         else:
             return jsonify("<h1>Error creating dependency tree</h1>")
+    if request.method == "GET":
+        os.kill(os.getpid(), signal.SIGINT)
+        return "Server shutting down..."
