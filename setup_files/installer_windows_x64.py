@@ -12,7 +12,7 @@ def run(cmd):
 def start():
     for r in deps:
         #checks for the non-python dependencies
-        result = run(f"{r} --version")
+        result = run(f"'{r} --version'")
         if result.returncode != 0:
             print(f"ERROR {result.stderr}: {r} is not installed or is not accessible.")
             input("Press any key to exit...")
