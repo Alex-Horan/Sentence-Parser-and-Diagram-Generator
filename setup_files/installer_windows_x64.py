@@ -38,7 +38,7 @@ def linCMD():
         # cd ./Sentence-Parser; source ./App/bin/activate
 
         #creates a venv for the python deps, added both to make testing and debugging easier and to make it more convenient for others using the app
-        makeEnv = run(["Set-Location -Path '.\\Sentence-Parser'; py -m venv App"])
+        makeEnv = run("Set-Location -Path '.\\Sentence-Parser'; py -m venv App")
         # makeEnv = run(["cd ./Sentence-Parser; python3 -m venv App;"])
         if makeEnv.returncode != 0:
             print("Failed to create virtual python environment.")
@@ -52,7 +52,7 @@ def linCMD():
 def spacyCMD():
     print("[*] Don't worry if it seems like it's frozen here, spacy takes anywhere from 10 seconds to 20 years to install depending on its mood apparently")
     # spacy is a bit weird when installing so i added this as a safeguard in case spacy just kinda dies when attempting to install normally
-    instSpacy = run(["cd .\\Sentence-Parser; .\\App\\bin\\pip install setuptools wheel spacy;"])
+    instSpacy = run("cd .\\Sentence-Parser; .\\App\\bin\\pip install setuptools wheel spacy;")
     if instSpacy.returncode != 0:
         print("Failed to install spacy in the virtual environment")
         input("Press any key to exit...")
@@ -60,7 +60,7 @@ def spacyCMD():
         exit()
     else:
         print("Finished installing Spacy, now installing spaCy model.")
-        instModel = run(["cd .\\Sentence-Parser; .\\App\\bin\\python -m spacy download en_core_web_md;"])
+        instModel = run("cd .\\Sentence-Parser; .\\App\\bin\\python -m spacy download en_core_web_md;")
         if instModel.returncode != 0:
             print("Failed to install spaCy model.")
             input("Press <Enter> to exit...")
@@ -72,7 +72,7 @@ def spacyCMD():
 
 def projCMD():
     # clones the github repo
-    instProj = run(["cd .\\Sentence-Parser; git clone https://github.com/Alex-Horan/Sentence-Parser-and-Diagram-Generator.git; rm -recursive -force -Path '.\\Sentence-Parser-and-Diagram-Generator\\Windows_Setup_x64.c'; rm -recursive -force -Path '.\\Sentence-Parser-and-Diagram-Generator\\setup_files'; rm -recursive -force -Path '.\\Sentence-Parser-and-Diagram-Generator\\Linux_Setup_x64.c'"])
+    instProj = run("cd .\\Sentence-Parser; git clone https://github.com/Alex-Horan/Sentence-Parser-and-Diagram-Generator.git; rm -recursive -force -Path '.\\Sentence-Parser-and-Diagram-Generator\\Windows_Setup_x64.c'; rm -recursive -force -Path '.\\Sentence-Parser-and-Diagram-Generator\\setup_files'; rm -recursive -force -Path '.\\Sentence-Parser-and-Diagram-Generator\\Linux_Setup_x64.c'")
     # code = instProj.communicate()
     if instProj.returncode != 0:
         print("Failed to clone project")
@@ -85,7 +85,7 @@ def projCMD():
 
 def pyCMD():
     # installs all of the python deps into the virtenv
-    instPy = run(["cd .\\Sentence-Parser; .\\App\\bin\\pip install -r .\\Sentence-Parser-and-Diagram-Generator\\requirements.txt;"])
+    instPy = run("cd .\\Sentence-Parser; .\\App\\bin\\pip install -r .\\Sentence-Parser-and-Diagram-Generator\\requirements.txt;")
     if instPy.returncode != 0:
         print("Failed to install python dependencies.")
         input("Press any key to exit...")
@@ -97,7 +97,7 @@ def pyCMD():
 
 def nodeCMD():
     # installs the dependencies for the actual react/electron project
-    instNode = run(["cd .\\Sentence-Parser; npm install --prefix .\\Sentence-Parser-and-Diagram-Generator\\"])
+    instNode = run("cd .\\Sentence-Parser; npm install --prefix .\\Sentence-Parser-and-Diagram-Generator\\")
     if instNode.returncode != 0:
         print("Failed to install npm packages")
         input("Press any key to exit...")
@@ -110,14 +110,14 @@ def nodeCMD():
 def finInst():
     # compiles the "app" to an executable. This is linux unique because the chances of someone having gcc installed on a linux distro is far higher than for someone on windows
     # windows will use a precompiled binary that is just obfuscated, aka in a different folder, until setup has run and finished
-    makeApp = run(["cd .\\Sentence-Parser\\Sentence-Parser-and-Diagram-Generator; gcc .\\ApplicationWindows.c -o ParserApp"])
+    makeApp = run("cd .\\Sentence-Parser\\Sentence-Parser-and-Diagram-Generator; gcc .\\ApplicationWindows.c -o ParserApp")
     if makeApp.returncode != 0:
         print("Failed to install app.")
         input("Press any key to exit...")
         remove(argv[0])
         exit()
     else:
-        cleanUp = run(["cd .\\Sentence-Parser-and-Diagram-Generator; rm -force -Path '.\\Sentence-Parser-and-Diagram-Generator\\ApplicationWindows.c'"])
+        cleanUp = run("cd .\\Sentence-Parser-and-Diagram-Generator; rm -force -Path '.\\Sentence-Parser-and-Diagram-Generator\\ApplicationWindows.c'")
         if cleanUp.returncode != 0:
             print("current path: " + os.getcwd())
             print("Failed to cleanup setup files.")
