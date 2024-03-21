@@ -55,11 +55,14 @@ def depTree(sentence: str): #generates dependency tree
 def conTree(sentence: str): #generates constituent tree
     if sentence is not None:
         tree = ConstituentTree(sentence, conlp)
-        tree.export_tree(destination_filepath='./conTree.pdf', verbose=True, wkhtmltopdf_bin_filepath=conConfig)
-        pdf = fitz.open("conTree.pdf")
-        for page in pdf:
-            pix = page.get_pixmap(dpi=1300)
-            pix.save("conTree.png")
+        if curOS == "nt":
+            tree.export_tree(destination_filepath="./conTree.png", verbose=True)
+        else:
+            tree.export_tree(destination_filepath='./conTree.pdf', verbose=True, wkhtmltopdf_bin_filepath=conConfig)
+            pdf = fitz.open("conTree.pdf")
+            for page in pdf:
+                pix = page.get_pixmap(dpi=1300)
+                pix.save("conTree.png")
 
 def graphGen(sentence: str):
     print("Current path: " + os.getcwd())
