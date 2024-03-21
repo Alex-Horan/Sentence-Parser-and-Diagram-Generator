@@ -24,7 +24,7 @@ def start():
     
 def linCMD():
     #creates a directory for the project
-    instStart = run("'New-Item -ItemType Directory -Name Sentence-Parser'")
+    instStart = run("'New-Item -ItemType Directory -Name 'Sentence-Parser''")
     # instStart = run(["mkdir ./Sentence-Parser"])
     if instStart.returncode != 0:
         print("Unable to create directory, please check file permissions")
