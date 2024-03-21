@@ -6,7 +6,7 @@ from sys import argv
 deps = ["magick", "pip", "wkhtmltopdf", "node", "git", "gcc"]
 
 def run(cmd):
-    completed = subprocess.run([f"powershell -Command {cmd}"], shell=True, capture_output=True)
+    completed = subprocess.run(["powershell", "-Command", cmd], capture_output=True)
     return completed
 
 def start():
